@@ -126,14 +126,42 @@ node *reverse_list(node *&head)
 
 //----------------------------------------------------------------------------------------
 
-// void merge_two_sorted_lists(node *&h1, node *&h2)
-// {
-
-// }
+node *merge_two_sorted_lists(node *h1, node *h2)
+{
+    if(h1==NULL || h2==NULL) return NULL;
+    if(h1->data > h2->data) swap(h2, h1);
+    node *newhead = h1;
+    node *temp;
+    while(h1 != NULL && h2 != NULL)
+    {
+        temp = NULL;
+        while(h1 != NULL && h1->data <= h2->data)
+        {
+            temp = h1;
+            h1 = h1->next;
+        }
+        temp->next = h2;
+        swap(h1, h2);
+    }
+    return newhead;
+}
 
 //----------------------------------------------------------------------------------------
 
+node *find_middle_node(node *&head)
+{
+    if(head == NULL) return NULL;
+    node *fast = head;
+    node *slow = head;
+    while(fast != NULL && fast->next != NULL)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    return slow;
+}
 
+//----------------------------------------------------------------------------------------
 
 int main()
 {
