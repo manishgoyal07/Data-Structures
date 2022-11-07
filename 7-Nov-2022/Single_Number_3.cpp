@@ -18,3 +18,6 @@ class Solution {
         return ans;
     }
 };
+
+//TC: O(2N)
+//SC: O(1)
